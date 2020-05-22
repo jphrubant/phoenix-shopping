@@ -14,7 +14,7 @@ defmodule Shopping do
   def changeset(rows, attrs) do
     rows
       |> cast(attrs, [:item, :quantity, :price])
-      |> validate_required([:item, :quantity])
+      |> validate_required([:item, :quantity, :price])
       # here I can set "unique_contraint" for unique fields
   end
 end

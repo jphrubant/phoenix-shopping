@@ -1,3 +1,14 @@
 <h4> Here you can view your cart content </h4>
 
+<ul>
+    <%= for row <- @rows do %>
+        <li>
+           Item: <%= row.item %>,
+           Quantity: <%= row.quantity %>,
+           Price: <%= row.price %>
+           <%= link "edit", to: Routes.shopping_path(@conn, :edit, row.id) %>
+        </li>
+    <% end %>
+</ul>
+
 <%= link "Add Cart Item", to: Routes.shopping_path(@conn, :new) %>

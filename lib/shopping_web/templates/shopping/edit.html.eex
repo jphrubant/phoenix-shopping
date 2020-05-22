@@ -1,0 +1,20 @@
+<h4>Edit cart item</h4>
+
+<%= form_for @changeset, Routes.shopping_path(@conn, :update, @row), fn f -> %>
+
+    <%= label f, :item %>
+    <%= text_input f, :item, placeholder: "Update item" %>
+    <%= error_tag f, :item %>
+
+    <%= label f, :quantity %>
+    <%= text_input f, :quantity, placeholder: "Update quantity" %>
+    <%= error_tag f, :quantity %>
+
+    <%= label f, :price %>
+    <%= text_input f, :price, placeholder: "Update price (don't be cheap)" %>
+    <%= error_tag f, :price %>
+
+    <%= submit "Save changes" %>
+
+    <%= link "back", to: Routes.shopping_path(@conn, :index) %>
+<%end %>
