@@ -30,6 +30,11 @@ config :shopping, ShoppingWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: "cdec728abc3f62b66445",
+  client_secret: "8b66a0299e2dd886d8581ddc77fd51bbdc0f4568"
+
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix

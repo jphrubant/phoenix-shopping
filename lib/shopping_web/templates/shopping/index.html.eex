@@ -6,7 +6,8 @@
            Item: <%= row.item %>,
            Quantity: <%= row.quantity %>,
            Price: <%= row.price %>
-           <%= link "edit", to: Routes.shopping_path(@conn, :edit, row.id) %>
+           <%= link "edit", to: Routes.shopping_path(@conn, :edit, row.id) %> - 
+           <%= link "delete", to: Routes.shopping_path(@conn, :delete, row), method: :delete %>
         </li>
     <% end %>
 </ul>

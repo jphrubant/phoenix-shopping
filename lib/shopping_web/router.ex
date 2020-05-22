@@ -19,6 +19,13 @@ defmodule ShoppingWeb.Router do
     resources "/", ShoppingController
   end
 
+  scope "/auth", ShoppingWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ShoppingWeb do
   #   pipe_through :api

@@ -44,7 +44,15 @@ defmodule ShoppingWeb.ShoppingController do
           |> put_flash(:info, "Item updated")
           |> redirect(to: Routes.shopping_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "edit.html", changeset: changeset)
+        render(conn, "edit.html", changeset: changeset, row: previous_shopping)
     end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    row = Repo.get!(Shopping, id) |> Repo.delete!
+
+    conn
+      |> put_flash(:info, "Item deleted")
+      |> redirect(to: Routes.shopping_path(conn, :index))
   end
 end
