@@ -1,0 +1,3 @@
+<h4> Here you can view your cart content </h4>
+
+<%= link "Add Cart Item", to: Routes.shopping_path(@conn, :new) %>
