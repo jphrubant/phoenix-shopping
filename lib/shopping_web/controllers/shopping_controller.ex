@@ -3,6 +3,9 @@ defmodule ShoppingWeb.ShoppingController do
 
   alias Shopping.Repo
 
+  import Ecto
+
+
   plug Shopping.Plugs.RequireAuth when action in [:new, :create, :update, :edit, :delete]
 
   def index(conn, _params) do
@@ -16,7 +19,7 @@ defmodule ShoppingWeb.ShoppingController do
   end
 
   def create(conn, %{"shopping" => shopping}) do
-    # changeset = Shopping.changeset(%Shopping{}, shopping) # <-- naming issue HELP
+    #changeset = Shopping.changeset(%Shopping{}, shopping) # <-- naming issue HELP
 
     changeset = conn.assigns.user
       |> build_assoc(:rows)

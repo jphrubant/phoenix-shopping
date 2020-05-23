@@ -6,7 +6,7 @@ defmodule Shopping do
     field :item, :string
     field :quantity, :integer
     field :price, :integer
-    belongs_to :users, Shopping.User
+    belongs_to :user, Shopping.User
 
     timestamps()
   end
