@@ -3,8 +3,10 @@ defmodule ShoppingWeb.ShoppingController do
 
   alias Shopping.Repo
 
+  plug Shopping.Plugs.RequireAuth when action in [:new, :create, :update, :edit, :delete]
+
   def index(conn, _params) do
-    IO.inspect(conn.assigns)
+    rows = Repo.all(Shopping)
     render(conn, "index.html", rows: rows)
   end
 
@@ -14,10 +16,15 @@ defmodule ShoppingWeb.ShoppingController do
   end
 
   def create(conn, %{"shopping" => shopping}) do
-    changeset = Shopping.changeset(%Shopping{}, shopping) # <-- naming issue HELP
+    # changeset = Shopping.changeset(%Shopping{}, shopping) # <-- naming issue HELP
+
+    changeset = conn.assigns.user
+      |> build_assoc(:rows)
+      |> Shopping.changeset(shopping)
+
 
     case Repo.insert(changeset) do
-      {:ok, shopping} ->
+      {:ok, _shopping} ->
         conn
           |> put_flash(:info, "Item was added successfully")
           |> redirect(to: Routes.shopping_path(conn, :index))

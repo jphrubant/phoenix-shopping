@@ -6,6 +6,7 @@ defmodule Shopping.User do
     field :email, :string
     field :provider, :string
     field :token, :string
+    has_many :rows, Shopping
 
     timestamps()
   end
