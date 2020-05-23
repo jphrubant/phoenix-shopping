@@ -4,8 +4,7 @@ defmodule ShoppingWeb.ShoppingController do
   alias Shopping.Repo
 
   def index(conn, _params) do
-    rows = Repo.all(Shopping)
-
+    IO.inspect(conn.assigns)
     render(conn, "index.html", rows: rows)
   end
 

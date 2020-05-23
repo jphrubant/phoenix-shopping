@@ -12,6 +12,12 @@ defmodule ShoppingWeb.AuthController do
     signin(conn, changeset)
   end
 
+  def signout(conn, _changeset) do
+    conn
+      |> configure_session(drop: true)
+      |> redirect(to: Routes.shopping_path(conn, :index))
+  end
+
   defp signin(conn, changeset) do
     case insert_or_update_user(changeset)do
       {:ok, user} ->
