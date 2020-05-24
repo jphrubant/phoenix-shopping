@@ -5,7 +5,6 @@ defmodule Shopping.Plugs.RequireAuth do
   alias ShoppingWeb.Router.Helpers
 
   def init(_params) do
-
   end
 
   def call(conn, _params) do

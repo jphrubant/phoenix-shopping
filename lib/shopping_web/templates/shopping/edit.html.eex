@@ -11,7 +11,7 @@
     <%= error_tag f, :quantity %>
 
     <%= label f, :price %>
-    <%= text_input f, :price, placeholder: "Update price (don't be cheap)" %>
+    <%= text_input f, :price, placeholder: "Update price for all items (don't be cheap)" %>
     <%= error_tag f, :price %>
 
     <%= submit "Save changes" %>

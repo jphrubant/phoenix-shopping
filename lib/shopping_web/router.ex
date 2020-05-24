@@ -17,7 +17,8 @@ defmodule ShoppingWeb.Router do
   scope "/", ShoppingWeb do
     pipe_through :browser
 
-    resources "/", ShoppingController
+    get "/", ShoppingController, :home
+    resources "/cart", ShoppingController
   end
 
   scope "/auth", ShoppingWeb do

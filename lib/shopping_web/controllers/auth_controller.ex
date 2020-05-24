@@ -15,7 +15,7 @@ defmodule ShoppingWeb.AuthController do
   def signout(conn, _changeset) do
     conn
       |> configure_session(drop: true)
-      |> redirect(to: Routes.shopping_path(conn, :index))
+      |> redirect(to: Routes.shopping_path(conn, :home))
   end
 
   defp signin(conn, changeset) do
@@ -28,7 +28,7 @@ defmodule ShoppingWeb.AuthController do
       {:error, _reason} ->
         conn
           |> put_flash(:error, "Something went wrong")
-          |> redirect(to: Routes.shopping_path(conn, :index))
+          |> redirect(to: Routes.shopping_path(conn, :home))
     end
   end
 

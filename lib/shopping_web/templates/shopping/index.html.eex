@@ -1,15 +1,20 @@
-<h4> Here you can view your cart content </h4>
+<h4>Here you can view your cart</h4>
 
-<ul>
+<%= if (length @rows) > 0 do %>
+  <ul>
     <%= for row <- @rows do %>
-        <li>
-           Item: <%= row.item %>,
-           Quantity: <%= row.quantity %>,
-           Price: <%= row.price %>
-           <%= link "edit", to: Routes.shopping_path(@conn, :edit, row.id) %> - 
-           <%= link "delete", to: Routes.shopping_path(@conn, :delete, row), method: :delete %>
-        </li>
+      <li>
+      Item: <%= row.item %> |
+      Quantity: <%= row.quantity %> |
+      Total Price: <%=  %>€ |
+      <%= link "edit", to: Routes.shopping_path(@conn, :edit, row.id) %> -
+      <%= link "delete", to: Routes.shopping_path(@conn, :delete, row), method: :delete %>
+      </li>
     <% end %>
-</ul>
+  </ul>
+  <p> Total Price of you basket: <%= @total %>€ </p>
+<% else %>
+    <p> Your cart is empty, boo </p>
+<% end %>
 
-<%= link "Add Cart Item", to: Routes.shopping_path(@conn, :new) %>
+<%= link "Add item to cart", to: Routes.shopping_path(@conn, :new) %>

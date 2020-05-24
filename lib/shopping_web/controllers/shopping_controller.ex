@@ -5,12 +5,17 @@ defmodule ShoppingWeb.ShoppingController do
 
   import Ecto
 
+  plug Shopping.Plugs.RequireAuth when action in [:index, :new, :create, :update, :edit, :delete]
 
-  plug Shopping.Plugs.RequireAuth when action in [:new, :create, :update, :edit, :delete]
+  def home(conn, _params) do
+    render(conn, "home.html")
+  end
 
   def index(conn, _params) do
     rows = Repo.all(Shopping)
-    render(conn, "index.html", rows: rows)
+    total = Repo.aggregate(Shopping, :sum, :price)
+
+    render(conn, "index.html", rows: rows, total: total)
   end
 
   def new(conn, _params) do
@@ -20,11 +25,9 @@ defmodule ShoppingWeb.ShoppingController do
 
   def create(conn, %{"shopping" => shopping}) do
     #changeset = Shopping.changeset(%Shopping{}, shopping) # <-- naming issue HELP
-
     changeset = conn.assigns.user
       |> build_assoc(:rows)
       |> Shopping.changeset(shopping)
-
 
     case Repo.insert(changeset) do
       {:ok, _shopping} ->
