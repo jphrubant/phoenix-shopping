@@ -1,5 +1,5 @@
 <%= if @conn.assigns[:user] do %>
     <%= link "Go to your cart", to: Routes.shopping_path(@conn, :index) %>
   <% else %>
-    <h3>You must login to access your very own personal cart</h3>
+    <h4>You must login to access your very own personal cart</h4>
 <% end %>
