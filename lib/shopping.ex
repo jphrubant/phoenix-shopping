@@ -11,7 +11,6 @@ defmodule Shopping do
     timestamps()
   end
 
-  # @doc false ---> what's that?
   def changeset(rows, attrs) do
     rows
       |> cast(attrs, [:item, :quantity, :price])
